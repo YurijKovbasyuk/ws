@@ -10,7 +10,10 @@ const io = new Server(httpServer, {
 })
 
 io.on(('connection', (socket) => {
-    console.log('new frontend connect')
+    // console.log('new frontend connect')
+    socket.on('chat-message', message => {
+        socket.broadcast.emit('chat-message', message)
+    })
 }))
 
 httpServer.listen(3001)
